@@ -28,39 +28,42 @@ export default function ToolCard({
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
       <Link href={`/tool/${url}`}>
-        <div className="p-6">
-          <div className="flex items-center space-x-4">
-            <div className="relative w-12 h-12 flex-shrink-0">
-              <Image
-                src={imageUrl || defaultImage}
-                alt={title}
-                fill
-                className="object-contain rounded-lg"
-              />
-            </div>
-            <div className="flex-grow">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">{title}</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-block px-2 py-1 text-xs bg-blue-50 text-blue-600 rounded-full">
-                  {category}
-                </span>
-                {tags.map((tag, index) => (
-                  <span 
-                    key={index}
-                    className="inline-block px-2 py-1 text-xs bg-gray-50 text-gray-600 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-            {rank && (
-              <div className="text-sm text-gray-500">
-                #{rank}
-              </div>
-            )}
+        <div>
+          <div className="relative w-[299px] h-[168px] mx-auto">
+            <Image
+              src={imageUrl || defaultImage}
+              alt={title}
+              fill
+              className="object-cover rounded-t-xl"
+              sizes="299px"
+            />
           </div>
-          <p className="mt-3 text-gray-600 text-sm line-clamp-2">{cleanDescription}</p>
+          <div className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">{title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-block px-2 py-1 text-xs bg-blue-50 text-blue-600 rounded-full">
+                    {category}
+                  </span>
+                  {tags.map((tag, index) => (
+                    <span 
+                      key={index}
+                      className="inline-block px-2 py-1 text-xs bg-gray-50 text-gray-600 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {rank && (
+                <div className="text-sm text-gray-500">
+                  #{rank}
+                </div>
+              )}
+            </div>
+            <p className="mt-3 text-gray-600 text-sm line-clamp-2">{cleanDescription}</p>
+          </div>
         </div>
       </Link>
     </div>
