@@ -6,4 +6,5 @@ export interface Tool {
   url: string;
   Tags?: string;
   rank?: number;
+  // Add any additional fields that your API returns
 } 
