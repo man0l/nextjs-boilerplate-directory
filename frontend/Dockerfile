@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -7,16 +7,12 @@ COPY package*.json ./
 
 # Install dependencies including resend
 RUN npm install
-RUN npm install resend
 
 # Copy the rest of the application
 COPY . .
-
-# Build the application
-RUN npm run build
 
 # Expose the port
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "dev"] 
+CMD ["npm", "run", "dev"]

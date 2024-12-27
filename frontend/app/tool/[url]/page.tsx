@@ -4,6 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
 
+const createSlug = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 export default function ToolDetails({ params }: { params: { url: string } }) {
   const [tool, setTool] = useState<Tool | null>(null);
   const [loading, setLoading] = useState(true);
@@ -12,7 +19,7 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
     fetch(`http://localhost:5000/api/tools`)
       .then(res => res.json())
       .then(data => {
-        const foundTool = data.find((t: Tool) => t.url === params.url);
+        const foundTool = data.find((t: Tool) => createSlug(t.title) === params.url);
         setTool(foundTool || null);
         setLoading(false);
       })

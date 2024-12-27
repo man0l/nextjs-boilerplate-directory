@@ -24,7 +24,7 @@ export default function Home() {
       .then(data => {
         setTools(data);
         // Extract unique categories
-        const uniqueCategories = Array.from(new Set(data.map((tool: Tool) => tool.filter1)));
+        const uniqueCategories = Array.from(new Set(data.map((tool: Tool) => tool.filter1))) as string[];
         setCategories(uniqueCategories);
         setLoading(false);
       })

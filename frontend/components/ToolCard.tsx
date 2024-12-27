@@ -3,6 +3,13 @@ import Link from 'next/link';
 import { stripHtml } from '../utils/textUtils';
 import { Tool } from '../types';
 
+const createSlug = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 interface ToolCardProps {
   title: string;
   description: string;
@@ -24,10 +31,11 @@ export default function ToolCard({
 }: ToolCardProps) {
   const cleanDescription = stripHtml(description);
   const defaultImage = 'https://uploads-ssl.webflow.com/63994dae1033718bee6949ce/639bb00c6ca245d55dcf6bc9_Cld_SocShare_Card_FB_2020.jpeg';
+  const slug = createSlug(title);
 
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
-      <Link href={`/tool/${url}`}>
+      <Link href={`/tool/${slug}`}>
         <div>
           <div className="relative w-[299px] h-[168px] mx-auto">
             <Image
