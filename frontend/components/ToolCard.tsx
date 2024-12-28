@@ -28,8 +28,10 @@ export default function ToolCard({
   tags = [],
   rank
 }: ToolCardProps) {
+  const slug = url ? createSlug(url) : createSlug(title);
+  
   return (
-    <Link href={`/tool/${url}`} className="card block h-full">
+    <Link href={`/tool/${slug}`} className="card block h-full">
       <div className="p-6">
         {/* Title and Tags Section */}
         <div className="mb-4">
@@ -66,7 +68,7 @@ export default function ToolCard({
 
         {/* Description */}
         <p className="text-muted-foreground text-sm line-clamp-2">
-          {description}
+          {stripHtml(description)}
         </p>
 
         {/* Category */}
