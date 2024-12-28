@@ -85,7 +85,7 @@ export default function Footer() {
                 href="/category/ai-detection" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
-                Best Detection Tools
+                Best AI Detection Tools
               </Link>
             </div>
           </div>

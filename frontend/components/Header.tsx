@@ -19,9 +19,6 @@ export default function Header() {
               <Link href="/categories" className="text-muted-foreground hover:text-foreground transition-colors">
                 Categories
               </Link>
-              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </Link>
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="button-primary"
