@@ -34,7 +34,7 @@ export default function ToolCard({
   const slug = createSlug(title);
 
   return (
-    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 mt-4">
       <Link href={`/tool/${slug}`}>
         <div>
           <div className="relative w-[299px] h-[168px] mx-auto">

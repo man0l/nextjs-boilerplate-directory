@@ -59,25 +59,28 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Categories</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/category/generative-ai" className="text-gray-600 hover:text-blue-600 text-sm">
-                  Generative AI
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/productivity" className="text-gray-600 hover:text-blue-600 text-sm">
-                  Productivity
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/marketing" className="text-gray-600 hover:text-blue-600 text-sm">
-                  Marketing
-                </Link>
-              </li>
-            </ul>
+          <div className="Categories">
+            <h3 className="font-semibold mb-4">Categories</h3>
+            <div className="space-y-2">
+              <Link 
+                href="/category/generative-ai" 
+                className="block text-gray-600 hover:text-blue-600"
+              >
+                Generative AI
+              </Link>
+              <Link 
+                href="/category/productivity" 
+                className="block text-gray-600 hover:text-blue-600"
+              >
+                Productivity
+              </Link>
+              <Link 
+                href="/category/marketing" 
+                className="block text-gray-600 hover:text-blue-600"
+              >
+                Marketing
+              </Link>
+            </div>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">Newsletter</h3>

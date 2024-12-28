@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
+import ToolCard from '../../../components/ToolCard';
 
 const createSlug = (text: string): string => {
   return text
@@ -13,6 +14,7 @@ const createSlug = (text: string): string => {
 
 export default function ToolDetails({ params }: { params: { url: string } }) {
   const [tool, setTool] = useState<Tool | null>(null);
+  const [relatedTools, setRelatedTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +23,18 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
       .then(data => {
         const foundTool = data.find((t: Tool) => createSlug(t.title) === params.url);
         setTool(foundTool || null);
+        
+        if (foundTool) {
+          // Find related tools from the same category
+          const related = data
+            .filter((t: Tool) => 
+              t.filter1 === foundTool.filter1 && // Same category
+              t.title !== foundTool.title // Exclude current tool
+            )
+            .slice(0, 5); // Take first 5
+          setRelatedTools(related);
+        }
+        
         setLoading(false);
       })
       .catch(err => {
@@ -126,6 +140,28 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
               </a>
             </div>
           </div>
+
+          {/* Related Tools Section */}
+          {relatedTools.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-semibold mb-8">More {tool.filter1} Tools</h2>
+              <div className="flex flex-wrap justify-center gap-8">
+                {relatedTools.map((relatedTool, index) => (
+                  <div key={index} className="w-full md:w-auto">
+                    <ToolCard
+                      title={relatedTool.title}
+                      description={relatedTool.description}
+                      imageUrl={relatedTool.imageUrl}
+                      category={relatedTool.filter1}
+                      url={relatedTool.url}
+                      tags={relatedTool.Tags ? relatedTool.Tags.split(',') : []}
+                      rank={relatedTool.rank}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
