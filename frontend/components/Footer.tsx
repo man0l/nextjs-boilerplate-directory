@@ -52,6 +52,16 @@ export default function Footer() {
                   Categories
                 </Link>
               </li>
+              <li>
+                <Link href="/terms" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="Categories">
@@ -120,7 +130,16 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
-          © {new Date().getFullYear()} Best AI Tools. All rights reserved.
+          <div>© {new Date().getFullYear()} Best AI Tools. All rights reserved.</div>
+          <div className="mt-2 space-x-4">
+            <Link href="/terms" className="hover:text-accent-foreground transition-colors">
+              Terms & Conditions
+            </Link>
+            <span>·</span>
+            <Link href="/privacy" className="hover:text-accent-foreground transition-colors">
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
