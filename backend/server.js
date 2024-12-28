@@ -60,6 +60,65 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', toolsCount: aiTools.length });
 });
 
+// Helper function to get unique categories
+function getUniqueCategories() {
+  const categories = new Set();
+  aiTools.forEach(tool => {
+    if (tool.filter1) {
+      tool.filter1.split(',').forEach(category => {
+        categories.add(category.trim());
+      });
+    }
+  });
+  return Array.from(categories);
+}
+
+// Helper function to generate sitemap XML
+function generateSitemapXML(baseUrl) {
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+  // Add homepage
+  xml += `  <url>
+    <loc>${baseUrl}</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>\n`;
+
+  // Add all tools
+  aiTools.forEach(tool => {
+    if (tool.url) {
+      xml += `  <url>
+    <loc>${baseUrl}/tool/${encodeURIComponent(tool.url)}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>\n`;
+    }
+  });
+
+  // Add all categories
+  getUniqueCategories().forEach(category => {
+    const categorySlug = category.toLowerCase().replace(/\s+/g, '-');
+    xml += `  <url>
+    <loc>${baseUrl}/category/${encodeURIComponent(categorySlug)}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>\n`;
+  });
+
+  xml += '</urlset>';
+  return xml;
+}
+
+// Sitemap endpoint
+app.get('/api/sitemap.xml', (req, res) => {
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+  const baseUrl = `${protocol}://${req.headers.host}`;
+  
+  res.header('Content-Type', 'application/xml');
+  res.send(generateSitemapXML(baseUrl));
+});
+
 // Only start the server if we're running directly (not being imported)
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
