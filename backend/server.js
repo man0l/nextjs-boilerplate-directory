@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { parse } = require('csv-parse/sync');
 require('dotenv').config();
 
 const app = express();
@@ -18,16 +19,15 @@ function loadData() {
   try {
     const dataPath = path.join(__dirname, 'data', 'transformed_aitools_with_descriptions_and_images.csv');
     const fileContent = fs.readFileSync(dataPath, 'utf-8');
-    const lines = fileContent.split('\n');
-    const headers = lines[0].split(',');
     
-    aiTools = lines.slice(1).map(line => {
-      const values = line.split(',');
-      return headers.reduce((obj, header, index) => {
-        obj[header.trim()] = values[index] ? values[index].trim() : '';
-        return obj;
-      }, {});
-    }).filter(tool => tool.title); // Filter out empty rows
+    // Use csv-parse to parse the CSV file
+    const records = parse(fileContent, {
+      columns: true, // Use the header row to create objects
+      skip_empty_lines: true,
+      trim: true
+    });
+    
+    aiTools = records.filter(tool => tool.title); // Filter out empty rows
     
     console.log('Data loaded successfully');
     console.log('Total tools loaded:', aiTools.length);
