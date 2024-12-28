@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
 import ToolCard from '../../../components/ToolCard';
+import RelatedTools from '../../../components/RelatedTools';
 
 const createSlug = (text: string): string => {
   return text
@@ -142,26 +143,7 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
           </div>
 
           {/* Related Tools Section */}
-          {relatedTools.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-2xl font-semibold mb-8">More {tool.filter1} Tools</h2>
-              <div className="flex flex-wrap justify-center gap-8">
-                {relatedTools.map((relatedTool, index) => (
-                  <div key={index} className="w-full md:w-auto">
-                    <ToolCard
-                      title={relatedTool.title}
-                      description={relatedTool.description}
-                      imageUrl={relatedTool.imageUrl}
-                      category={relatedTool.filter1}
-                      url={relatedTool.url}
-                      tags={relatedTool.Tags ? relatedTool.Tags.split(',') : []}
-                      rank={relatedTool.rank}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <RelatedTools tools={relatedTools} category={tool.filter1} />
         </div>
       </div>
     </div>
