@@ -58,22 +58,34 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Categories</h3>
             <div className="space-y-2">
               <Link 
-                href="/category/generative-ai" 
+                href="/category/generative-art" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
-                Generative AI
+                Best AI Generative Art Tools
               </Link>
               <Link 
-                href="/category/productivity" 
+                href="/category/social-media" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
-                Productivity
+                Best AI Social Media Tools
               </Link>
               <Link 
                 href="/category/marketing" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
-                Marketing
+                Best AI Marketing Tools
+              </Link>
+              <Link 
+                href="/category/copywriting" 
+                className="block text-muted-foreground hover:text-accent-foreground transition-colors"
+              >
+                Best AI Copywriting Tools
+              </Link>
+              <Link 
+                href="/category/ai-detection" 
+                className="block text-muted-foreground hover:text-accent-foreground transition-colors"
+              >
+                Best Detection Tools
               </Link>
             </div>
           </div>
