@@ -3,18 +3,76 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: 250, 252, 255;
+  --foreground: 23, 23, 23;
+  
+  --primary: 79, 70, 229;
+  --primary-foreground: 255, 255, 255;
+  
+  --secondary: 244, 245, 247;
+  --secondary-foreground: 107, 114, 128;
+  
+  --accent: 238, 240, 255;
+  --accent-foreground: 79, 70, 229;
+  
+  --muted: 241, 245, 249;
+  --muted-foreground: 107, 114, 128;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl lg:text-4xl;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: var(--background);
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100;
+  }
+  
+  .button-primary {
+    @apply px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-medium 
+           hover:from-indigo-500 hover:to-indigo-400 transition-all duration-200 shadow-sm hover:shadow disabled:opacity-50;
+  }
+  
+  .button-secondary {
+    @apply px-6 py-3 rounded-lg bg-gray-100 text-gray-700 font-medium 
+           hover:bg-gray-200 transition-all duration-200 disabled:opacity-50;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 
+           focus:ring-indigo-200 outline-none transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari and Opera */
 }

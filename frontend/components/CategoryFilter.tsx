@@ -23,8 +23,8 @@ export default function CategoryFilter({
           onClick={() => onCategoryChange('')}
           className={`px-4 py-2 rounded-full transition-all ${
             selectedCategory === ''
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-100 hover:bg-gray-200'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
           }`}
         >
           All
@@ -35,8 +35,8 @@ export default function CategoryFilter({
             onClick={() => onCategoryChange(category)}
             className={`px-4 py-2 rounded-full transition-all ${
               selectedCategory === category
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 hover:bg-gray-200'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
             }`}
           >
             {category}
@@ -48,7 +48,7 @@ export default function CategoryFilter({
         <div className="text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="text-blue-500 hover:text-blue-600 font-medium text-sm"
+            className="text-accent-foreground hover:text-primary transition-colors font-medium text-sm"
           >
             {showAll ? '← Show Less' : 'See All Categories →'}
           </button>

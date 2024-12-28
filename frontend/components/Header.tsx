@@ -9,22 +9,22 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white shadow-sm">
+      <header className="bg-white border-b border-gray-100">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="text-xl font-bold">
+            <Link href="/" className="text-xl font-bold gradient-text">
               Best AI Tools
             </Link>
             <div className="flex gap-6 items-center">
-              <Link href="/categories" className="hover:text-blue-600">
+              <Link href="/categories" className="text-muted-foreground hover:text-foreground transition-colors">
                 Categories
               </Link>
-              <Link href="/blog" className="hover:text-blue-600">
+              <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                 Blog
               </Link>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="button-primary"
               >
                 Submit Tool
               </button>

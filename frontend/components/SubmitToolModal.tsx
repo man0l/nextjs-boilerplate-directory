@@ -54,13 +54,13 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Submit New AI Tool</h2>
+          <h2 className="text-2xl font-bold gradient-text">Submit New AI Tool</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             ✕
           </button>
@@ -68,7 +68,7 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Tool Name *
             </label>
             <input
@@ -76,12 +76,12 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
               required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Website URL *
             </label>
             <input
@@ -89,24 +89,24 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
               required
               value={formData.url}
               onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Description *
             </label>
             <textarea
               required
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+              className="input min-h-[100px]"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Category *
             </label>
             <input
@@ -114,31 +114,31 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
               required
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Logo URL
             </label>
             <input
               type="url"
               value={formData.imageUrl}
               onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-muted-foreground mb-1">
               Tags (comma separated)
             </label>
             <input
               type="text"
               value={formData.tags}
               onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input"
               placeholder="AI, Productivity, Marketing"
             />
           </div>
@@ -146,7 +146,7 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="button-primary w-full"
           >
             {status === 'loading' ? 'Submitting...' : 'Submit Tool'}
           </button>

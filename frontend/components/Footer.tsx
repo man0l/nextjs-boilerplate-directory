@@ -30,61 +30,61 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-50 border-t border-gray-100">
+    <footer className="bg-secondary border-t border-gray-100">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">About</h3>
-            <p className="text-gray-600 text-sm">
+            <h3 className="font-semibold text-foreground mb-3">About</h3>
+            <p className="text-muted-foreground text-sm">
               Discover and explore the best AI tools to enhance your workflow and productivity.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Quick Links</h3>
+            <h3 className="font-semibold text-foreground mb-3">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/submit" className="text-gray-600 hover:text-blue-600 text-sm">
+                <Link href="/submit" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
                   Submit Tool
                 </Link>
               </li>
               <li>
-                <Link href="/categories" className="text-gray-600 hover:text-blue-600 text-sm">
+                <Link href="/categories" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-600 hover:text-blue-600 text-sm">
+                <Link href="/blog" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
                   Blog
                 </Link>
               </li>
             </ul>
           </div>
           <div className="Categories">
-            <h3 className="font-semibold mb-4">Categories</h3>
+            <h3 className="font-semibold text-foreground mb-4">Categories</h3>
             <div className="space-y-2">
               <Link 
                 href="/category/generative-ai" 
-                className="block text-gray-600 hover:text-blue-600"
+                className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
                 Generative AI
               </Link>
               <Link 
                 href="/category/productivity" 
-                className="block text-gray-600 hover:text-blue-600"
+                className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
                 Productivity
               </Link>
               <Link 
                 href="/category/marketing" 
-                className="block text-gray-600 hover:text-blue-600"
+                className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
                 Marketing
               </Link>
             </div>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Newsletter</h3>
-            <p className="text-gray-600 text-sm mb-4">
+            <h3 className="font-semibold text-foreground mb-3">Newsletter</h3>
+            <p className="text-muted-foreground text-sm mb-4">
               Stay updated with the latest AI tools and trends.
             </p>
             <form onSubmit={handleSubmit} className="space-y-2">
@@ -93,13 +93,13 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="input"
                 required
               />
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                className="button-primary w-full"
               >
                 {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
               </button>
@@ -112,7 +112,7 @@ export default function Footer() {
             </form>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600 text-sm">
+        <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
           © {new Date().getFullYear()} Best AI Tools. All rights reserved.
         </div>
       </div>

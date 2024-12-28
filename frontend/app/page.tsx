@@ -6,25 +6,32 @@ import ToolCard from '../components/ToolCard';
 import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import Pagination from '../components/Pagination';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 9;
 
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [tools, setTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(() => {
+    return Number(searchParams.get('page')) || 1;
+  });
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/tools')
       .then(res => res.json())
       .then(data => {
-        setTools(data);
+        // Only keep tools with descriptions
+        const validTools = data.filter((tool: Tool) => tool.description && tool.description.trim() !== '');
+        setTools(validTools);
         // Extract unique categories
-        const uniqueCategories = Array.from(new Set(data.map((tool: Tool) => tool.filter1))) as string[];
+        const uniqueCategories = Array.from(new Set(validTools.map((tool: Tool) => tool.filter1))) as string[];
         setCategories(uniqueCategories);
         setLoading(false);
       })
@@ -59,6 +66,14 @@ export default function Home() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Update URL with new page number without scrolling
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', page.toString());
+    router.push(url.pathname + url.search, { scroll: false });
+  };
 
   return (
     <>
@@ -96,7 +111,7 @@ export default function Home() {
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={setCurrentPage}
+                onPageChange={handlePageChange}
               />
             )}
           </>

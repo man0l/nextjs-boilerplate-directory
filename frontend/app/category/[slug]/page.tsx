@@ -1,16 +1,23 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Tool } from '../../../types';
 import ToolCard from '../../../components/ToolCard';
+import Pagination from '../../../components/Pagination';
+
+const ITEMS_PER_PAGE = 9;
 
 export default function CategoryPage() {
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.slug;
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(() => {
+    return Number(searchParams.get('page')) || 1;
+  });
 
   useEffect(() => {
     if (!slug) return;
@@ -65,13 +72,26 @@ export default function CategoryPage() {
     );
   }
 
+  const totalPages = Math.ceil(tools.length / ITEMS_PER_PAGE);
+  const paginatedTools = tools.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', page.toString());
+    router.push(url.pathname + url.search, { scroll: false });
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8 capitalize">
-        {decodeURIComponent(slug?.toString() || '').replace(/-/g, ' ')}
+        Best AI {decodeURIComponent(slug?.toString() || '').replace(/-/g, ' ')} Tools
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {tools.map((tool, index) => (
+        {paginatedTools.map((tool, index) => (
           <ToolCard
             key={index}
             title={tool.title}
@@ -84,6 +104,14 @@ export default function CategoryPage() {
           />
         ))}
       </div>
+      
+      {tools.length > ITEMS_PER_PAGE && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 } 
