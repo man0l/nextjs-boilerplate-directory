@@ -8,7 +8,7 @@ export default function CategoriesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/tools')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`)
       .then(res => res.json())
       .then(data => {
         // Create a map to count tools per category
@@ -22,7 +22,7 @@ export default function CategoriesPage() {
 
         // Convert to array and sort by count
         const categoriesArray = Object.entries(categoryMap)
-          .map(([name, count]) => ({ name, count }))
+          .map(([name, count]) => ({ name, count: count as number }))
           .sort((a, b) => b.count - a.count);
 
         setCategories(categoriesArray);

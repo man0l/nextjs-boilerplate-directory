@@ -24,7 +24,7 @@ export default function CategoryPage() {
 
     const fetchTools = async () => {
       try {
-        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
         const res = await fetch(`${API_BASE_URL}/api/tools`);
         
         if (!res.ok) throw new Error('Failed to fetch tools');
@@ -33,7 +33,7 @@ export default function CategoryPage() {
         const normalizedSlug = decodeURIComponent(slug.toString()).replace(/-/g, ' ').toLowerCase().trim();
 
         const categoryTools = data.filter((tool: Tool) => {
-          const toolCategory = (tool.filter1 || tool.category || '').toLowerCase().trim();
+          const toolCategory = (tool.filter1 || '').toLowerCase().trim();
           const toolCategories = toolCategory.split(',').map(cat => cat.trim());
           return toolCategories.some(cat => cat === normalizedSlug);
         });

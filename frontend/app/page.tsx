@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Tool } from '../types';
 import Hero from '../components/Hero';
 import ToolCard from '../components/ToolCard';
@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 9;
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [tools, setTools] = useState<Tool[]>([]);
@@ -24,7 +24,7 @@ export default function Home() {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/tools')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`)
       .then(res => res.json())
       .then(data => {
         // Only keep tools with descriptions
@@ -118,5 +118,13 @@ export default function Home() {
         )}
       </div>
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

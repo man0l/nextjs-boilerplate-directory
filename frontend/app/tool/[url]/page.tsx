@@ -19,7 +19,7 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/tools`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`)
       .then(res => res.json())
       .then(data => {
         const foundTool = data.find((t: Tool) => createSlug(t.title) === params.url);
