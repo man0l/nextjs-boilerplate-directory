@@ -52,11 +52,6 @@ export default function Footer() {
                   Categories
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
           <div className="Categories">
