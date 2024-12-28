@@ -63,29 +63,20 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
         )}
 
         {/* Carousel Content */}
-        <div className="overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentPage * 100}%)` }}
-          >
-            <div className="flex gap-8 w-full">
-              {visibleTools.map((tool, index) => (
-                <div key={index} className="w-1/3 flex-shrink-0">
-                  <div className="transform transition-all duration-300 hover:scale-105">
-                    <ToolCard
-                      title={tool.title}
-                      description={tool.description}
-                      imageUrl={tool.imageUrl}
-                      category={tool.filter1}
-                      url={tool.url}
-                      tags={tool.Tags ? tool.Tags.split(',') : []}
-                      rank={tool.rank}
-                    />
-                  </div>
-                </div>
-              ))}
+        <div className="grid grid-cols-3 gap-8">
+          {visibleTools.map((tool, index) => (
+            <div key={index} className="transform transition-all duration-300 hover:scale-105">
+              <ToolCard
+                title={tool.title}
+                description={tool.description}
+                imageUrl={tool.imageUrl}
+                category={tool.filter1}
+                url={tool.url}
+                tags={tool.Tags ? tool.Tags.split(',') : []}
+                rank={tool.rank}
+              />
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Navigation Dots */}

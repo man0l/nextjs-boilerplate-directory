@@ -70,50 +70,48 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <Link href="/" className="text-blue-600 hover:underline mb-6 inline-block">
-              ← Back to Tools
+              Back to All Tools
             </Link>
             
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              {/* Tool Image */}
-              <div className="w-full md:w-[299px] flex-shrink-0">
-                <div className="relative w-[299px] h-[168px]">
-                  <Image
-                    src={tool.imageUrl}
-                    alt={tool.title}
-                    fill
-                    className="object-cover rounded-lg shadow-md"
-                    sizes="299px"
-                  />
-                </div>
-              </div>
-
-              {/* Tool Info */}
-              <div className="flex-grow">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                      {tool.title}
-                    </h1>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="inline-block px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full">
-                        {tool.filter1}
+            {/* Tool Info - Moved above image */}
+            <div className="mb-8">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                    {tool.title}
+                  </h1>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="inline-block px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full">
+                      {tool.filter1}
+                    </span>
+                    {tool.Tags && tool.Tags.split(',').map((tag, index) => (
+                      <span
+                        key={index}
+                        className="inline-block px-3 py-1 text-sm bg-gray-50 text-gray-600 rounded-full"
+                      >
+                        {tag.trim()}
                       </span>
-                      {tool.Tags && tool.Tags.split(',').map((tag, index) => (
-                        <span
-                          key={index}
-                          className="inline-block px-3 py-1 text-sm bg-gray-50 text-gray-600 rounded-full"
-                        >
-                          {tag.trim()}
-                        </span>
-                      ))}
-                    </div>
+                    ))}
                   </div>
-                  {tool.rank && (
-                    <div className="text-lg text-gray-500">
-                      #{tool.rank}
-                    </div>
-                  )}
                 </div>
+                {tool.rank && (
+                  <div className="text-lg text-gray-500">
+                    #{tool.rank}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Tool Image - Modified for full width */}
+            <div className="w-full mb-8">
+              <div className="relative w-full h-[400px]">
+                <Image
+                  src={tool.imageUrl}
+                  alt={tool.title}
+                  fill
+                  className="object-contain rounded-lg shadow-md"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
               </div>
             </div>
           </div>

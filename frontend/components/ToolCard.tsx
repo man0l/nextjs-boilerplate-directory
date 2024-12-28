@@ -28,50 +28,52 @@ export default function ToolCard({
   tags = [],
   rank
 }: ToolCardProps) {
-  const cleanDescription = description ? stripHtml(description) : '';
-  const defaultImage = 'https://uploads-ssl.webflow.com/63994dae1033718bee6949ce/639bb00c6ca245d55dcf6bc9_Cld_SocShare_Card_FB_2020.jpeg';
-  const slug = createSlug(title);
-
   return (
-    <Link href={`/tool/${slug}`} className="block group">
-      <div className="card overflow-hidden bg-white hover:scale-[1.02] transition-all duration-300">
-        <div className="relative w-full aspect-[16/9]">
-          <Image
-            src={imageUrl || defaultImage}
-            alt={title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          />
-          {rank && (
-            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
-              #{rank}
+    <Link href={`/tool/${url}`} className="card block h-full">
+      <div className="p-6">
+        {/* Title and Tags Section */}
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="text-xs px-2 py-1 bg-gray-100 rounded-full text-gray-600"
+                >
+                  {tag.trim()}
+                </span>
+              ))}
             </div>
           )}
         </div>
-        
-        <div className="p-6">
-          <div className="flex flex-wrap gap-2 mb-3">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent text-accent-foreground">
-              {category}
+
+        {/* Image Section - Now Wider */}
+        <div className="relative aspect-[16/9] w-full mb-4">
+          <Image
+            src={imageUrl || '/placeholder.png'}
+            alt={title}
+            fill
+            className="object-cover rounded-lg"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          {rank && (
+            <span className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium">
+              #{rank}
             </span>
-            {tags.slice(0, 2).map((tag, index) => (
-              <span 
-                key={index}
-                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary text-secondary-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          
-          <h3 className="text-lg font-semibold mb-2 group-hover:text-indigo-600 transition-colors">
-            {title}
-          </h3>
-          
-          <p className="text-muted-foreground text-sm line-clamp-2">
-            {cleanDescription}
-          </p>
+          )}
+        </div>
+
+        {/* Description */}
+        <p className="text-muted-foreground text-sm line-clamp-2">
+          {description}
+        </p>
+
+        {/* Category */}
+        <div className="mt-4">
+          <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
+            {category}
+          </span>
         </div>
       </div>
     </Link>
