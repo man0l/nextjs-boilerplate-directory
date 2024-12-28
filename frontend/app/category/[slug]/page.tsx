@@ -25,7 +25,7 @@ export default function CategoryPage() {
     const fetchTools = async () => {
       try {
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-        const res = await fetch(`${API_BASE_URL}/api/tools`);
+        const res = await fetch(`${API_BASE_URL}/tools`);
         
         if (!res.ok) throw new Error('Failed to fetch tools');
         
