@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const csv = require('csv-parser');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -17,22 +16,25 @@ let aiTools = [];
 // Load data synchronously at startup
 function loadData() {
   try {
-    const results = [];
-    fs.createReadStream(path.join(__dirname, 'data', 'transformed_aitools_with_descriptions_and_images.csv'))
-      .pipe(csv())
-      .on('data', (data) => {
-        if (!data.description || data.description.trim() === '') {
-          console.log('Tool without description:', data.title);
-        }
-        results.push(data);
-      })
-      .on('end', () => {
-        aiTools = results;
-        console.log('CSV file successfully processed');
-        console.log('Total tools loaded:', aiTools.length);
-      });
+    const dataPath = path.join(__dirname, 'data', 'transformed_aitools_with_descriptions_and_images.csv');
+    const fileContent = fs.readFileSync(dataPath, 'utf-8');
+    const lines = fileContent.split('\n');
+    const headers = lines[0].split(',');
+    
+    aiTools = lines.slice(1).map(line => {
+      const values = line.split(',');
+      return headers.reduce((obj, header, index) => {
+        obj[header.trim()] = values[index] ? values[index].trim() : '';
+        return obj;
+      }, {});
+    }).filter(tool => tool.title); // Filter out empty rows
+    
+    console.log('Data loaded successfully');
+    console.log('Total tools loaded:', aiTools.length);
   } catch (error) {
     console.error('Error loading data:', error);
+    // Initialize with empty array if file can't be loaded
+    aiTools = [];
   }
 }
 
@@ -53,11 +55,16 @@ app.get('/api/tools/:id', (req, res) => {
   res.json(tool);
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', toolsCount: aiTools.length });
+});
+
 // Only start the server if we're running directly (not being imported)
 if (require.main === module) {
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
   });
 }
 
