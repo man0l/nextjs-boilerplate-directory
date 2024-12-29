@@ -129,6 +129,22 @@ export default function Footer() {
             </form>
           </div>
         </div>
+        <div 
+          className="trustpilot-widget" 
+          data-locale="en-US" 
+          data-template-id="56278e9abfbbba0bdcd568bc" 
+          data-businessunit-id="6771aa4f775a7e4dc3a6b1dd" 
+          data-style-height="52px" 
+          data-style-width="100%"
+        >
+          <a 
+            href="https://www.trustpilot.com/review/best-ai-directory.eu" 
+            target="_blank" 
+            rel="noopener"
+          >
+            Trustpilot
+          </a>
+        </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
           <div>© {new Date().getFullYear()} Best AI Tools. All rights reserved.</div>
           <div className="mt-2 space-x-4">
