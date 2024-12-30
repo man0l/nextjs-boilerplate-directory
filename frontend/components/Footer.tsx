@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -27,6 +27,42 @@ export default function Footer() {
     } catch (error) {
       setStatus('error');
     }
+  };
+
+  const TrustpilotWidget = () => {
+    useEffect(() => {
+      // Wait for Trustpilot to be available
+      const initTrustpilot = () => {
+        if (window.Trustpilot) {
+          window.Trustpilot.loadFromElement(document.getElementById('trustbox'));
+        } else {
+          setTimeout(initTrustpilot, 100);
+        }
+      };
+
+      initTrustpilot();
+    }, []);
+
+    return (
+      <div
+        id="trustbox"
+        className="trustpilot-widget"
+        data-locale="en-US"
+        data-template-id="56278e9abfbbba0bdcd568bc"
+        data-businessunit-id="6771aa4f775a7e4dc3a6b1dd"
+        data-style-height="52px"
+        data-style-width="100%"
+        data-theme="light"
+      >
+        <a
+          href="https://www.trustpilot.com/review/best-ai-directory.eu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Trustpilot
+        </a>
+      </div>
+    );
   };
 
   return (
@@ -129,21 +165,8 @@ export default function Footer() {
             </form>
           </div>
         </div>
-        <div 
-          className="trustpilot-widget" 
-          data-locale="en-US" 
-          data-template-id="56278e9abfbbba0bdcd568bc" 
-          data-businessunit-id="6771aa4f775a7e4dc3a6b1dd" 
-          data-style-height="52px" 
-          data-style-width="100%"
-        >
-          <a 
-            href="https://www.trustpilot.com/review/best-ai-directory.eu" 
-            target="_blank" 
-            rel="noopener"
-          >
-            Trustpilot
-          </a>
+        <div className="mt-8">
+          <TrustpilotWidget />
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
           <div>© {new Date().getFullYear()} Best AI Tools. All rights reserved.</div>
