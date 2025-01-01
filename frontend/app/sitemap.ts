@@ -1,12 +1,25 @@
 import { MetadataRoute } from 'next'
 
 async function fetchTools() {
-  const apiUrl = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL
-  const res = await fetch(`${apiUrl}/tools`, {
-    next: { revalidate: 3600 } // Revalidate every hour
-  })
-  if (!res.ok) return []
-  return res.json()
+  try {
+    const apiUrl = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL
+    if (!apiUrl) {
+      console.warn('API URL not configured. Skipping tools fetch for sitemap.');
+      return [];
+    }
+
+    const res = await fetch(`${apiUrl}/tools`, {
+      next: { revalidate: 3600 } // Revalidate every hour
+    })
+    if (!res.ok) {
+      console.warn('Failed to fetch tools for sitemap:', res.statusText);
+      return [];
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching tools for sitemap:', error);
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

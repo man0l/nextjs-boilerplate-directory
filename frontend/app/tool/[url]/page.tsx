@@ -81,7 +81,7 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
                     <span className="inline-block px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full">
                       {tool.filter1}
                     </span>
-                    {tool.Tags && tool.Tags.split(',').map((tag, index) => (
+                    {tool.tags && tool.tags.map((tag, index) => (
                       <span
                         key={index}
                         className="inline-block px-3 py-1 text-sm bg-gray-50 text-gray-600 rounded-full"

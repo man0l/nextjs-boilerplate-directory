@@ -98,9 +98,10 @@ export default function CategoryPage() {
             description={tool.description}
             imageUrl={tool.imageUrl}
             category={tool.filter1}
+            filter1={tool.filter1}
             url={tool.url}
             page={tool.page}
-            tags={tool.Tags ? tool.Tags.split(',') : []}
+            tags={tool.tags || []}
             rank={tool.rank}
           />
         ))}
