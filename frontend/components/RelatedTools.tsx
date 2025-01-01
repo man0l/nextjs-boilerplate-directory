@@ -72,6 +72,7 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
                 imageUrl={tool.imageUrl}
                 category={tool.filter1}
                 url={tool.url}
+                page={tool.page}
                 tags={tool.Tags ? tool.Tags.split(',') : []}
                 rank={tool.rank}
               />

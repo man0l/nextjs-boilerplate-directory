@@ -101,6 +101,7 @@ function HomeContent() {
                   imageUrl={tool.imageUrl}
                   category={tool.filter1}
                   url={tool.url}
+                  page={tool.page}
                   tags={tool.Tags ? tool.Tags.split(',') : []}
                   rank={tool.rank}
                 />

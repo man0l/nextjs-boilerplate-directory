@@ -17,7 +17,7 @@ let aiTools = [];
 // Load data synchronously at startup
 function loadData() {
   try {
-    const dataPath = path.join(__dirname, 'data', 'transformed_aitools_with_descriptions_and_images.csv');
+    const dataPath = path.join(__dirname, 'data', 'boilerplate-tools.csv');
     const fileContent = fs.readFileSync(dataPath, 'utf-8');
     
     // Use csv-parse to parse the CSV file

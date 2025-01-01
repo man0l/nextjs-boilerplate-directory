@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { stripHtml } from '../utils/textUtils';
+import { Tool } from '@/types';
 
 const createSlug = (text: string): string => {
   return text
@@ -9,26 +10,17 @@ const createSlug = (text: string): string => {
     .replace(/(^-|-$)/g, '');
 };
 
-interface ToolCardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-  url: string;
-  tags?: string[];
-  rank?: number;
-}
-
 export default function ToolCard({ 
   title, 
   description, 
   imageUrl, 
   category, 
   url,
+  page,
   tags = [],
   rank
-}: ToolCardProps) {
-  const slug = url ? createSlug(url) : createSlug(title);
+}: Tool) {
+  const slug = page;
   
   return (
     <Link href={`/tool/${slug}`} className="card block h-full">

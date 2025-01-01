@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
-import ToolCard from '../../../components/ToolCard';
 import RelatedTools from '../../../components/RelatedTools';
 
 const createSlug = (text: string): string => {
