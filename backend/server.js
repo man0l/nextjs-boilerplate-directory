@@ -14,6 +14,34 @@ app.use(express.json());
 // Store data in memory
 let aiTools = [];
 
+// Add markdown to HTML conversion function
+function markdownToHtml(markdown) {
+  if (!markdown) return '';
+  
+  // Convert headers
+  let html = markdown.replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                    .replace(/^# (.*$)/gm, '<h1>$1</h1>');
+  
+  // Convert bold text
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  
+  // Convert italics
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  
+  // Convert lists
+  html = html.replace(/^\s*[-*]\s(.*)$/gm, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+  
+  // Convert paragraphs (any line that doesn't start with a special character)
+  html = html.replace(/^(?!<[h|u|l])(.*$)/gm, '<p>$1</p>');
+  
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, '');
+  
+  return html;
+}
+
 // Load data synchronously at startup
 function loadData() {
   try {
@@ -27,7 +55,11 @@ function loadData() {
       trim: true
     });
     
-    aiTools = records.filter(tool => tool.title); // Filter out empty rows
+    // Process the records and convert markdown to HTML
+    aiTools = records.filter(tool => tool.title).map(tool => ({
+      ...tool,
+      description: markdownToHtml(tool.description)
+    }));
     
     console.log('Data loaded successfully');
     console.log('Total tools loaded:', aiTools.length);

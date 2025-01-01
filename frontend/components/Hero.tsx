@@ -8,19 +8,19 @@ export default function Hero() {
       <div className="relative container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="mb-6">
-            <span className="block text-muted-foreground font-medium mb-2">AI Tools Directory</span>
-            <span className="gradient-text">Discover and Compare</span>
-            <span className="block mt-1">The Best AI Tools</span>
+            <span className="block text-muted-foreground font-medium mb-2">SaaS Development Made Easy</span>
+            <span className="gradient-text">Launch For Days not Weeks with</span>
+            <span className="block mt-1">Modern SaaS Boilerplates</span>
           </h1>
           
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Explore our curated collection of AI-powered tools to enhance your workflow and boost productivity
+            Discover production-ready SaaS starter templates to accelerate your development. Save weeks of setup time.
           </p>
 
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-100">
             <div className="text-center">
               <div className="text-3xl font-bold gradient-text">100+</div>
-              <div className="text-muted-foreground mt-1">AI Tools</div>
+              <div className="text-muted-foreground mt-1">Boilerplates</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold gradient-text">10+</div>

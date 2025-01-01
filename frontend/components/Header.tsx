@@ -13,7 +13,7 @@ export default function Header() {
         <nav className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <Link href="/" className="text-xl font-bold gradient-text">
-              Best AI Tools
+              Saas Boilerplate Starters
             </Link>
             <div className="flex gap-6 items-center">
               <Link href="/categories" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -23,7 +23,7 @@ export default function Header() {
                 onClick={() => setIsModalOpen(true)}
                 className="button-primary"
               >
-                Submit Tool
+                Submit Boilerplate
               </button>
             </div>
           </div>

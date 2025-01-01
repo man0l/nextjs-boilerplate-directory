@@ -148,7 +148,7 @@ export default function SubmitToolModal({ isOpen, onClose }: SubmitToolModalProp
             disabled={status === 'loading'}
             className="button-primary w-full"
           >
-            {status === 'loading' ? 'Submitting...' : 'Submit Tool'}
+            {status === 'loading' ? 'Submitting...' : 'Submit Boilerplate'}
           </button>
 
           {status === 'success' && (

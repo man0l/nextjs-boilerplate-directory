@@ -88,7 +88,7 @@ export default function CategoryPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8 capitalize">
-        Best AI {decodeURIComponent(slug?.toString() || '').replace(/-/g, ' ')} Tools
+        {decodeURIComponent(slug?.toString() || '').replace(/-/g, ' ')} Boilerplate Starters
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {paginatedTools.map((tool, index) => (

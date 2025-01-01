@@ -69,7 +69,7 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <Link href="/" className="text-blue-600 hover:underline mb-6 inline-block">
-              Back to All Tools
+              Back to All Saas Boilerplates
             </Link>
             
             {/* Tool Info - Moved above image */}

@@ -40,7 +40,7 @@ export default function PrivacyPage() {
         <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
 
         <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us at hello at best-ai-directory.eu.</p>
+        <p>If you have any questions about this Privacy Policy, please contact us at hello at saas-boilerplate-starters.com.</p>
       </div>
     </div>
   );

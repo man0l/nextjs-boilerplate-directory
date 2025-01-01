@@ -8,8 +8,8 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Best AI Tools Directory",
-  description: "A curated directory of the best AI tools and resources",
+  title: "Saas Boilerplate Starters Directory",
+  description: "A curated directory of the best Saas Boilerplate Starters",
 };
 
 export default function RootLayout({
