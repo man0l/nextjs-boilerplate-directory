@@ -79,7 +79,7 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Saas Boilerplate Starters</h3>
             <div className="space-y-2">
               <Link 
-                href="/category/nextjs" 
+                href="/category/next-js" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
                 Next.js Boilerplate Starters
@@ -103,7 +103,7 @@ export default function Footer() {
                 Remix Boilerplate Starters
               </Link>
               <Link 
-                href="/category/express" 
+                href="/category/express-js" 
                 className="block text-muted-foreground hover:text-accent-foreground transition-colors"
               >
                 Express.js Boilerplate Starters
