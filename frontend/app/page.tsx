@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import Pagination from '../components/Pagination';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { semanticSearch } from '../utils/semanticSearch';
 
 const ITEMS_PER_PAGE = 9;
 
@@ -26,12 +27,12 @@ function HomeContent() {
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`)
       .then(res => res.json())
-      .then(data => {
+      .then((data: Tool[]) => {
         // Only keep tools with descriptions
-        const validTools = data.filter((tool: Tool) => tool.description && tool.description.trim() !== '');
+        const validTools = data.filter((tool) => tool.description && tool.description.trim() !== '');
         setTools(validTools);
         // Extract unique categories
-        const uniqueCategories = Array.from(new Set(validTools.map((tool: Tool) => tool.filter1))) as string[];
+        const uniqueCategories = Array.from(new Set(validTools.map((tool) => tool.filter1)));
         setCategories(uniqueCategories);
         setLoading(false);
       })
@@ -44,12 +45,9 @@ function HomeContent() {
   useEffect(() => {
     let filtered = [...tools];
 
-    // Apply search filter
+    // Apply search filter using semantic search
     if (searchQuery) {
-      filtered = filtered.filter(tool =>
-        tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      filtered = semanticSearch(filtered, searchQuery);
     }
 
     // Apply category filter
@@ -93,17 +91,11 @@ function HomeContent() {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto mt-8">
-              {paginatedTools.map((tool, index) => (
+              {paginatedTools.map((tool: Tool) => (
                 <ToolCard
-                  key={index}
-                  title={tool.title}
-                  description={tool.description}
-                  imageUrl={tool.imageUrl}
-                  category={tool.filter1}
-                  url={tool.url}
-                  page={tool.page}
-                  tags={tool.Tags ? tool.Tags.split(',') : []}
-                  rank={tool.rank}
+                  key={tool.title}
+                  {...tool}
+                  tags={tool.tags || []}
                 />
               ))}
             </div>

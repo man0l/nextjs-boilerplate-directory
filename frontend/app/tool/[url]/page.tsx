@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
 import RelatedTools from '../../../components/RelatedTools';
+import { semanticSearch } from '../../../utils/semanticSearch';
 
 const createSlug = (text: string): string => {
   return text
@@ -20,18 +21,15 @@ export default function ToolDetails({ params }: { params: { url: string } }) {
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`)
       .then(res => res.json())
-      .then(data => {
+      .then((data: Tool[]) => {
         const foundTool = data.find((t: Tool) => createSlug(t.title) === params.url);
         setTool(foundTool || null);
         
         if (foundTool) {
-          // Find related tools from the same category
-          const related = data
-            .filter((t: Tool) => 
-              t.filter1 === foundTool.filter1 && // Same category
-              t.title !== foundTool.title // Exclude current tool
-            )
-            .slice(0, 5); // Take first 5
+          // Find related tools using semantic search
+          const otherTools = data.filter(t => t.title !== foundTool.title);
+          const searchQuery = `${foundTool.title} ${foundTool.description} ${foundTool.filter1} ${foundTool.tags?.join(' ') || ''}`;
+          const related = semanticSearch(otherTools, searchQuery, 0.15).slice(0, 5); // Get top 5 most similar tools
           setRelatedTools(related);
         }
         
