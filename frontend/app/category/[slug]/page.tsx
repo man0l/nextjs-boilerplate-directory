@@ -30,7 +30,10 @@ export default function CategoryPage() {
         if (!res.ok) throw new Error('Failed to fetch tools');
         
         const data = await res.json();
-        const normalizedSlug = decodeURIComponent(slug.toString()).replace(/-/g, ' ').toLowerCase().trim();
+        const normalizedSlug = decodeURIComponent(slug.toString())
+          .replace(/-/g, '.')
+          .toLowerCase()
+          .trim();
 
         const categoryTools = data.filter((tool: Tool) => {
           const toolCategory = (tool.filter1 || '').toLowerCase().trim();
