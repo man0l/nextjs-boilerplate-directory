@@ -31,7 +31,7 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-semibold mb-8">More {category} Tools</h2>
+      <h2 className="text-2xl font-semibold mb-8">More {category} Boilerplate Starters</h2>
       
       <div 
         className="relative"
