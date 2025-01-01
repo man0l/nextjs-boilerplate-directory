@@ -111,9 +111,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <TrustpilotWidget />
-        </div>
+        </div> */}
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
           <div>© {new Date().getFullYear()} Saas Boilerplate Starters. All rights reserved.</div>
           <div className="mt-2 space-x-4">
