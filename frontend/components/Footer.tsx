@@ -110,12 +110,27 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+          <div>
+            <h3 className="font-semibold text-foreground mb-3">External Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="https://best-ai-directory.eu/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
+                  Best AI Tools
+                </a>
+              </li>
+              <li>
+                <a href="https://aiaccelerator.bg/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
+                  AI Automation Services
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         {/* <div className="mt-8">
           <TrustpilotWidget />
         </div> */}
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-muted-foreground text-sm">
-          <div>© {new Date().getFullYear()} Saas Boilerplate Starters. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Saas Boilerplate Starters. All rights reserved. <a href="https://www.linkedin.com/in/man0l" target="_blank" rel="noopener noreferrer" className="hover:text-accent-foreground transition-colors">Created by Manol</a></div>
           <div className="mt-2 space-x-4">
             <Link href="/terms" className="hover:text-accent-foreground transition-colors">
               Terms & Conditions
