@@ -2,14 +2,16 @@ import { MetadataRoute } from 'next'
 
 async function fetchTools() {
   try {
-    const apiUrl = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL
     if (!apiUrl) {
       console.warn('API URL not configured. Skipping tools fetch for sitemap.');
       return [];
     }
 
-    const res = await fetch(`${apiUrl}/tools`, {
-      next: { revalidate: 3600 } // Revalidate every hour
+    const res = await fetch(apiUrl + '/tools', {
+      next: { revalidate: 3600 }, // Revalidate every hour
+      // Add a short timeout to fail fast during build if API is not accessible
+      signal: AbortSignal.timeout(5000)
     })
     if (!res.ok) {
       console.warn('Failed to fetch tools for sitemap:', res.statusText);
@@ -17,7 +19,8 @@ async function fetchTools() {
     }
     return res.json();
   } catch (error) {
-    console.error('Error fetching tools for sitemap:', error);
+    // During build time, if the API is not accessible, return an empty array
+    console.warn('Error fetching tools for sitemap (this is normal during build):', error);
     return [];
   }
 }
