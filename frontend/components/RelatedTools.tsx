@@ -1,11 +1,13 @@
+'use client';
+
 import { Tool } from '../types';
 import ToolCard from './ToolCard';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface RelatedToolsProps {
   tools: Tool[];
-  category: string;
+  category?: string;
 }
 
 export default function RelatedTools({ tools, category }: RelatedToolsProps) {
@@ -31,7 +33,9 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-semibold mb-8">More {category} Boilerplate Starters</h2>
+      <h2 className="text-2xl font-semibold mb-8">
+        {category ? `More ${category} Boilerplate Starters` : 'Related Tools'}
+      </h2>
       
       <div 
         className="relative"
@@ -62,42 +66,12 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
           </>
         )}
 
-        {/* Carousel Content */}
-        <div className="grid grid-cols-3 gap-8">
-          {visibleTools.map((tool, index) => (
-            <div key={index} className="transform transition-all duration-300 hover:scale-105">
-              <ToolCard
-                title={tool.title}
-                description={tool.description}
-                imageUrl={tool.imageUrl}
-                category={tool.filter1}
-                filter1={tool.filter1}
-                url={tool.url}
-                page={tool.page}
-                tags={tool.tags || []}
-                rank={tool.rank}
-              />
-            </div>
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {visibleTools.map((tool) => (
+            <ToolCard key={tool.title} {...tool} />
           ))}
         </div>
-
-        {/* Navigation Dots */}
-        {totalPages > 1 && (
-          <div className="flex justify-center gap-2 mt-6">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentPage === index
-                    ? 'bg-blue-600 w-4'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
