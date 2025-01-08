@@ -117,8 +117,7 @@ export default function Footer() {
                 <a href="https://best-ai-directory.eu/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
                   Best AI Tools
                 </a>
-              </li>
-              <li>
+                <span className="text-muted-foreground mx-2">·</span>
                 <a href="https://aiaccelerator.bg/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent-foreground transition-colors text-sm">
                   AI Automation Services
                 </a>
