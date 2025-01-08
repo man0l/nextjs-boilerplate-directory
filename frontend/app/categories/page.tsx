@@ -1,8 +1,25 @@
 import Link from 'next/link';
 import { Tool } from '../../types';
 
-// Add route segment config
+// Add route segment config for ISR
 export const revalidate = 3600; // Revalidate every hour
+
+// Generate static params for all categories
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`);
+  const data = await res.json();
+  
+  const categories = new Set<string>();
+  data.forEach((tool: Tool) => {
+    if (tool.filter1) {
+      categories.add(tool.filter1.toLowerCase());
+    }
+  });
+  
+  return Array.from(categories).map((category) => ({
+    slug: category.replace(/\./g, '-')
+  }));
+}
 
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`, {

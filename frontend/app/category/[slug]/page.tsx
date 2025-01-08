@@ -2,10 +2,27 @@ import { Suspense } from 'react';
 import { Tool } from '../../../types';
 import CategoryClientWrapper from './CategoryClientWrapper';
 
-// Add route segment config
+// Add route segment config for ISR
 export const revalidate = 3600; // Revalidate every hour
 
 const ITEMS_PER_PAGE = 9;
+
+// Generate static params for all categories
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`);
+  const data = await res.json();
+  
+  const categories = new Set<string>();
+  data.forEach((tool: Tool) => {
+    if (tool.filter1) {
+      categories.add(tool.filter1.toLowerCase());
+    }
+  });
+  
+  return Array.from(categories).map((category) => ({
+    slug: category.replace(/\./g, '-')
+  }));
+}
 
 async function getCategoryTools(slug: string) {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -26,6 +43,20 @@ async function getCategoryTools(slug: string) {
     const toolCategories = toolCategory.split(',').map(cat => cat.trim());
     return toolCategories.some(cat => cat === normalizedSlug);
   });
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const categoryName = decodeURIComponent(params.slug)
+    .replace(/-/g, ' ')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  return {
+    title: `${categoryName} Boilerplate Starters`,
+    description: `Explore the best ${categoryName} boilerplate starters for your next project.`,
+  };
 }
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
