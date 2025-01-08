@@ -1,0 +1,16 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://saas-boilerplate.eu/sitemap.xml
+
+# Disallow API routes
+Disallow: /api/
+
+# Allow specific paths
+Allow: /categories
+Allow: /category/
+Allow: /tool/
+Allow: /privacy
+Allow: /terms 
