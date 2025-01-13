@@ -3,12 +3,9 @@ import { Tool } from '../types';
 import Hero from '../components/Hero';
 import ClientWrapper from '../components/ClientWrapper';
 
-// Add route segment config
-export const revalidate = 3600; // Revalidate every hour
-
 async function getTools() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`, {
-    next: { revalidate: 3600 } // Revalidate cache every hour
+    cache: 'no-store' // This enables SSR by fetching fresh data on every request
   });
   if (!res.ok) throw new Error('Failed to fetch tools');
   return res.json();
