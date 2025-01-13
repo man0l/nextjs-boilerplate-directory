@@ -1,9 +1,11 @@
 export function stripHtml(html: string): string {
-  // Remove HTML tags
-  const tmp = document.createElement('DIV');
-  tmp.innerHTML = html;
-  const text = tmp.textContent || tmp.innerText || '';
-  
+  // Server-safe HTML stripping using regex
+  const text = html
+    .replace(/<[^>]*>/g, '') // Remove HTML tags
+    .replace(/&nbsp;/g, ' ') // Replace &nbsp; with space
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
+    
   // Create excerpt (first 150 characters)
-  return text.trim().substring(0, 150) + (text.length > 150 ? '...' : '');
+  return text.substring(0, 150) + (text.length > 150 ? '...' : '');
 } 

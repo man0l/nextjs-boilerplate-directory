@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tool } from '../../../types';
-import RelatedTools from '../../../components/RelatedTools';
 import { semanticSearch } from '../../../utils/semanticSearch';
+import RelatedToolsSection from './RelatedToolsSection';
 
 // Add route segment config
 export const revalidate = 3600; // Revalidate every hour
@@ -107,12 +107,7 @@ export default async function ToolDetails({ params }: { params: { url: string } 
           </div>
         </div>
 
-        {relatedTools.length > 0 && (
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Related Tools</h2>
-            <RelatedTools tools={relatedTools} category={tool.filter1 || ''} />
-          </div>
-        )}
+        <RelatedToolsSection tools={relatedTools} category={tool.filter1 || ''} />
       </div>
     </div>
   );

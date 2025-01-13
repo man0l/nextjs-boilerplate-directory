@@ -1,3 +1,5 @@
+'use client';
+
 import { Tool } from '../types';
 import ToolCard from './ToolCard';
 import RelatedToolsCarousel from './RelatedToolsCarousel';
@@ -12,7 +14,6 @@ export default function RelatedTools({ tools, category }: RelatedToolsProps) {
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-bold mb-6">More {category} Tools</h2>
       <RelatedToolsCarousel tools={tools} />
     </div>
   );
