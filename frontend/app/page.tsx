@@ -3,20 +3,44 @@ import { Tool } from '../types';
 import Hero from '../components/Hero';
 import ClientWrapper from '../components/ClientWrapper';
 
-async function getTools() {
+const ITEMS_PER_PAGE = 9;
+
+async function getTools(page: number = 1) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tools`, {
-    cache: 'no-store' // This enables SSR by fetching fresh data on every request
+    cache: 'no-store'
   });
   if (!res.ok) throw new Error('Failed to fetch tools');
-  return res.json();
+  const allTools = await res.json();
+  
+  // Filter valid tools
+  const validTools = (allTools as Tool[]).filter((tool) => tool.description && tool.description.trim() !== '');
+  
+  // Calculate pagination
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedTools = validTools.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(validTools.length / ITEMS_PER_PAGE);
+  
+  return {
+    tools: paginatedTools,
+    totalItems: validTools.length,
+    totalPages,
+    currentPage: page
+  };
 }
 
-export default async function Home() {
-  const toolsData: Tool[] = await getTools();
-  // Only keep tools with descriptions
-  const validTools = toolsData.filter((tool) => tool.description && tool.description.trim() !== '');
-  // Extract unique categories
-  const uniqueCategories = Array.from(new Set(validTools.map((tool) => tool.filter1)));
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) {
+  const page = Number(searchParams.page) || 1;
+  const { tools: validTools, totalPages, currentPage } = await getTools(page);
+  
+  // Extract unique categories and ensure they're strings
+  const uniqueCategories = Array.from(
+    new Set(validTools.map((tool: Tool) => tool.filter1 || ''))
+  ).filter(Boolean);
 
   return (
     <main>
@@ -30,6 +54,8 @@ export default async function Home() {
           <ClientWrapper 
             initialTools={validTools}
             initialCategories={uniqueCategories}
+            totalPages={totalPages}
+            currentPage={currentPage}
           />
         </Suspense>
       </div>
