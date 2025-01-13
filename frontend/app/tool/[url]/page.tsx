@@ -82,7 +82,11 @@ export default async function ToolDetails({ params }: { params: { url: string } 
               ))}
             </div>
             
-            <p className="text-lg mb-6">{tool.description}</p>
+            <div className="text-lg mb-6 prose max-w-none">
+              {tool.description && (
+                <div dangerouslySetInnerHTML={{ __html: tool.description }} suppressHydrationWarning />
+              )}
+            </div>
             
             <div className="flex items-center justify-between">
               <Link
