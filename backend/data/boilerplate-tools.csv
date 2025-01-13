@@ -27,66 +27,131 @@ Jumpstart your web development journey with our expert-led Fullstack Flask onlin
 
 Whether you're a beginner looking to start a career in web development or an experienced developer wanting to upskill, this course is perfect for you. Learn how to build the frontend and backend of a web application, handle payments using Stripe, send user emails, create user authentication, deploy your app to a production environment, and optimize server and query performance.
 
-Enroll today and get immediate access to our extensive course material, supportive community, and the opportunity to apply your knowledge in building a revenue-generating SaaS application. Start learning anytime, anywhere at your own pace. Join the Fullstack Flask course and accelerate your web development career!","","","https://ik.imagekit.io/mhzvurw8l/fullstack-flask_oX-PHu9iw.png",1,"","**FAQ**","https://ik.imagekit.io/mhzvurw8l/fullstack-flask_oX-PHu9iw.png"
-"Nextjs Saas Starter","https://boilerplatelist.com/to/to/nextjs-saas-starter","nextjs-saas-starter","## FAQ
+Enroll today and get immediate access to our extensive course material, supportive community, and the opportunity to apply your knowledge in building a revenue-generating SaaS application. Start learning anytime, anywhere at your own pace. Join the Fullstack Flask course and accelerate your web development career!","","","https://ik.imagekit.io/mhzvurw8l/demo.png",1,"","**FAQ**","https://ik.imagekit.io/mhzvurw8l/fullstack-flask_oX-PHu9iw.png"
+"Nextjs Saas Starter","https://boilerplatelist.com/to/to/nextjs-saas-starter","nextjs-saas-starter","# Next.js SaaS Starter FAQ
 
-**Q1: What are the features of the 404 File Not Found tool?**
+The Next.js SaaS Starter is a comprehensive template designed to accelerate the development of SaaS applications. Below are some frequently asked questions to help you understand its features and benefits.
 
-A1: The 404 File Not Found tool is a simple but powerful utility that alerts users when they're trying to access a file or a webpage that doesn't exist. It features:
+---
 
-- Clear error message: Whenever a user tries to access a non-existent file, a clear, easy-to-understand error message is displayed.
-- Customizable: You can customize the error message to match the look and feel of your website or application.
-- Search function: Users can search for the file they are looking for right from the error page.
+## What is the Next.js SaaS Starter?
 
-**Q2: What are the pros of using the 404 File Not Found tool?**
+The Next.js SaaS Starter is a template for rapidly building SaaS applications using Next.js. It comes pre-integrated with essential features like authentication, payment processing with Stripe, and a user dashboard to streamline development.
 
-A2: Using the 404 File Not Found tool has several benefits:
+---
 
-- User-friendly: It provides a user-friendly way to alert users when they try to access a non-existent file.
-- Improves navigation: The tool can help users find the file they're looking for, improving the user experience and navigation on your site.
-- Customizable: It can be tailored to suit your website's or application's design and messaging.
+## What features does this starter kit include?
 
-**Q3: What are the cons of using the 404 File Not Found tool?**
+- **Landing Page**: A visually appealing marketing landing page with an animated terminal element.  
+- **Pricing Page**: Seamlessly connects to Stripe Checkout for managing payments.  
+- **Dashboard**: Provides CRUD operations for users and teams.  
+- **Role-Based Access Control (RBAC)**: Built-in support for Owner and Member roles.  
+- **Subscription Management**: Includes Stripe Customer Portal for handling subscriptions.  
+- **Authentication**: Secure email/password authentication with JWTs.  
+- **Middleware**: Global and local middleware for route protection and schema validation.  
+- **Activity Logging**: Tracks user events for better insights.
 
-A3: The cons of using the 404 File Not Found tool include:
+---
 
-- It can't prevent the error from occurring: The tool can only handle the error, but it cannot stop users from navigating to a non-existent file.
-- Limited customization: While you can adjust the look and message of the error page, the customization options are not extensive.
-- No automatic redirection: The tool doesn't automatically redirect users to an existing page.
+## What technologies are used in this starter kit?
 
-## Tool Description Rewrite
+- **Framework**: Next.js  
+- **Database**: PostgreSQL  
+- **ORM**: Drizzle ORM  
+- **Payments**: Stripe  
+- **UI Library**: shadcn/ui  
 
-The 404 File Not Found tool is a dedicated utility designed to manage and handle instances when users attempt to access a file or webpage that doesn't exist. By providing a clear and understandable error message, the tool helps to reduce user frustration and confusion. In addition, the tool also offers customization options, allowing you to tailor the error message to align with your website or application's overall design and tone. Plus, with an in-built search function, users can easily find the file they're looking for directly from the error page. Note, however, that the tool cannot prevent the error from occurring, only manage it when it does occur.","","","https://ik.imagekit.io/mhzvurw8l/nextjs-saas-starter_0qbKIJ4PI.png",2,"","FAQ","https://ik.imagekit.io/mhzvurw8l/nextjs-saas-starter_0qbKIJ4PI.png"
-"Next Js Subscription Payments","https://boilerplatelist.com/to/nextjs-subscription-payments","next-js-subscription-payments","**New Description for the 404 File Not Found Tool:**
+---
 
-The 404 File Not Found is an essential development tool designed to assist developers in handling missing or non-existent files in their applications. It's a user-friendly tool that helps to ensure seamless user experiences by providing custom error messages or redirecting users when they encounter broken or invalid links in your web application.
+## Is there a live demo available?
 
-**FAQ**
+Yes, a live demo of the Next.js SaaS Starter is available for preview.
 
-**Q1: What features does the 404 File Not Found tool offer?**
+---
 
-A: The 404 File Not Found tool provides the following key features:
-   1. Custom error messages: Allows developers to set their own error messages for missing files.
-   2. URL redirection: Redirects users to a different page when the initially requested file is not found.
-   3. Real-time tracking: Keeps track of 404 errors as they occur and provides detailed reports.
+## Can I customize the template to fit my needs?
 
-**Q2: What are the pros of using the 404 File Not Found tool?**
+Absolutely. The template is designed with flexibility in mind and can be tailored to match your specific project requirements.
 
-A: The advantages of using this tool include:
-   1. Improved user experience: It helps to prevent users from encountering blank or error pages.
-   2. Increased efficiency: It allows developers to quickly identify and fix broken or invalid links.
-   3. Easy to use: The tool is designed with a user-friendly interface for easy setup and use.
+---
 
-**Q3: Are there any cons related to the 404 File Not Found tool?**
+## Is there any documentation available?
 
-A: While the tool is beneficial, it does have some drawbacks:
-   1. It doesn't prevent 404 errors; it only handles them when they occur.
-   2. Depending on the complexity of your website, setup could potentially be time-consuming.
-   3. It may not be able to track 404 errors that are caused by issues beyond broken or missing links, such as server errors.
+Yes, detailed documentation is included in the repository. It covers instructions for setup, configuration, and customization to help you make the most of the template.
 
-**Q4: Is the 404 File Not Found tool compatible with all types of web applications?**
+---
 
-A: The 404 File Not Found tool is designed to work with most web applications. However, compatibility may depend on the specific programming languages and frameworks used in your application. Be sure to check the tool's documentation for more detailed information on compatibility.","","","https://ik.imagekit.io/mhzvurw8l/next-js-subscription-payments_ZNa_cTdJi.png",3,"","**New Description for the 404 File Not Found Tool:**","https://ik.imagekit.io/mhzvurw8l/next-js-subscription-payments_ZNa_cTdJi.png"
+## Who maintains this project?
+
+The Next.js SaaS Starter is maintained by Lee Robinson.
+
+---
+
+For more information and deployment options, visit the Vercel Templates page.
+","","","https://ik.imagekit.io/mhzvurw8l/Screenshot%20from%202025-01-13%2017-23-46.png",2,"","FAQ","https://ik.imagekit.io/mhzvurw8l/Screenshot%20from%202025-01-13%2017-23-46.png"
+"Next Js Subscription Payments","https://github.com/vercel/nextjs-subscription-payments","next-js-subscription-payments","**NextJs Subscription Payments:**
+
+# FAQs for Next.js Subscription Payments Starter
+
+### 1. What is the Next.js Subscription Payments Starter?
+
+The Next.js Subscription Payments Starter is a ready-to-use template designed for launching SaaS applications quickly. It integrates:
+
+- **Next.js** for the frontend.
+- **Supabase** for authentication and database management.
+- **Stripe** for handling subscription payments.
+
+[Explore the repository here](#).
+
+---
+
+### 2. How can I deploy this starter kit to begin my SaaS application?
+
+Deploying is easy with the **Deploy with Vercel** button provided in the repository:
+
+- It creates a new repository in your GitHub account.
+- Automatically sets up a Supabase project.
+- Configures necessary environment variables and database schema.
+
+This streamlines the process to get your SaaS application running quickly.
+
+---
+
+### 3. How do I set up user authentication for my application?
+
+To configure user authentication:
+
+1. Set up an OAuth app with GitHub.
+2. Configure Supabase to use GitHub as an authentication provider.
+3. Set your main production URL as the site URL in Supabase.
+4. Add the `NEXT_PUBLIC_SITE_URL` environment variable in your Vercel deployment settings.
+
+---
+
+### 4. How can I integrate Stripe to manage subscription payments in my SaaS application?
+
+Follow these steps to set up Stripe:
+
+1. Create a Stripe account if you don\'t have one.
+2. In test mode, set up a webhook with the endpoint URL as `[your_deployment_url]/api/webhooks`.
+   - Listen to all events and copy the signing secret.
+3. Add these Stripe environment variables to your Vercel settings:
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_WEBHOOK_SECRET`
+4. Redeploy your app and create products in the Stripe Dashboard. These will sync automatically with your Supabase database.
+
+---
+
+### 5. Is it possible to develop and test the application locally before deploying it to production?
+
+Yes! You can test locally by:
+
+1. Cloning your GitHub repository to your local machine.
+2. Installing dependencies and linking your project using the Vercel CLI.
+3. Starting a local Supabase instance using Docker.
+4. Running migrations to set up the database schema.
+","","","https://ik.imagekit.io/mhzvurw8l/demo.png",3,"","**NextJs Subscription Payments:**","https://ik.imagekit.io/mhzvurw8l/demo.png"
 "Supalaunch","https://supalaunch.com/?ref=boilerplatelist","supalaunch","FAQ on Features, Pros, and Cons of SupaLaunch
 
 1. What is inside SupaLaunch? Can I see it?
@@ -116,7 +181,7 @@ Our package comes with an aesthetically pleasing landing page built with Tailwin
 SupaLaunch offers a PostgreSQL database and a storage bucket integrated with Supabase. The tool's built-in authentication system supports email and Google sign-ins. It also includes SEO tags, a sitemap, ready AI components, over 20 UI themes, built-in website analytics, Email APIs, and privacy policy and terms of service templates. 
 
 With SupaLaunch, you can focus on your product's unique features while we take care of the rest. Get started today and make your dream startup a reality!","Next.js","","https://ik.imagekit.io/mhzvurw8l/supalaunch_Wfqk-UEef.png",4,"Next.js","FAQ on Features, Pros, and Cons of SupaLaunch","https://ik.imagekit.io/mhzvurw8l/supalaunch_Wfqk-UEef.png"
-"Next Js Subscription Payments Starter","https://github.com/vercel/nextjs-subscription-payments/?ref=boilerplatelist","next-js-subscription-payments-starter","**Next.js Subscription Payments Starter Kit FAQ**
+"Next Js Subscription Payments Starter","https://github.com/vercel/nextjs-subscription-payments","next-js-subscription-payments-starter","**Next.js Subscription Payments Starter Kit FAQ**
 
 **Q1: What features does this tool offer?**
 
